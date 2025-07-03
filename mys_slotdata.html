@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据详情</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #181c2f 0%, #232b3b 100%);
+      min-height: 100vh;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #f5f6fa;
+      box-sizing: border-box;
+    }
+    .back-btn {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 1000;
+      background: linear-gradient(90deg, #3ecbff 0%, #a259ff 100%);
+      color: #fff;
+      border: none;
+      border-radius: 16px;
+      padding: 8px 22px;
+      font-size: 1em;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #3ecbff44;
+      transition: background 0.18s, box-shadow 0.18s;
+      outline: none;
+    }
+    .back-btn:active {
+      background: linear-gradient(90deg, #2b7cff 0%, #3ecbff 100%);
+    }
+    .iframe-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      z-index: 1;
+    }
+    .iframe-content {
+      flex: 1 1 auto;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      margin: 0;
+      padding: 0;
+      background: #232b3b;
+    }
+    @media (max-width: 900px) {
+      .back-btn {
+        top: 8px;
+        left: 8px;
+        padding: 6px 14px;
+        font-size: 0.95em;
+        border-radius: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="back-btn" id="backBtn" onclick="location.href='mys.html'">返回</button>
+  <div class="iframe-wrap">
+    <iframe class="iframe-content" src="https://mysrtp.com/" allowfullscreen></iframe>
+  </div>
+  <script>
+    // 根据 localStorage.lang 设置返回按钮文字
+    (function() {
+      var lang = localStorage.getItem('lang') || 'zh';
+      var btn = document.getElementById('backBtn');
+      btn.textContent = (lang === 'en') ? 'Back' : '返回';
+    })();
+  </script>
+</body>
+</html>

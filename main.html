@@ -286,6 +286,9 @@
       opacity: 1;
       pointer-events: auto;
     }
+    .carousel-img.no-anim.active {
+      animation: none !important;
+    }
     .carousel-img.slide-out {
       z-index: 3;
       animation: slideOutToLeft 0.6s cubic-bezier(.6,.2,.3,1);
@@ -330,6 +333,9 @@
     <div class="carousel-inner">
       <img src="https://bztan0414.github.io/Coco/mys1.jpg" class="carousel-img active" alt="banner1">
       <img src="https://bztan0414.github.io/Coco/mys2.jpg" class="carousel-img" alt="banner2">
+      <img src="https://bztan0414.github.io/Coco/mys3.jpg" class="carousel-img" alt="banner3">
+      <img src="https://bztan0414.github.io/Coco/mys4.jpg" class="carousel-img" alt="banner4">
+      <img src="https://bztan0414.github.io/Coco/mys5.png" class="carousel-img" alt="banner5">
     </div>
   </div>
   <!-- 轮播图结束 -->
@@ -407,6 +413,7 @@
         cur.classList.remove('active');
         cur.classList.add('slide-out');
         next.classList.add('active');
+        next.classList.remove('no-anim');
         next.style.opacity = '1';
         // 动画结束后彻底隐藏上一张
         cur.addEventListener('animationend', function handler() {
@@ -427,10 +434,10 @@
         show((idx + 1) % imgs.length);
       }
       imgs.forEach((img, i) => {
-        img.classList.remove('active', 'slide-out');
+        img.classList.remove('active', 'slide-out', 'no-anim');
         img.style.opacity = (i === 0) ? '1' : '0';
       });
-      imgs[0].classList.add('active');
+      imgs[0].classList.add('active', 'no-anim');
       timer = setInterval(next, 4000);
     })();
   </script>
