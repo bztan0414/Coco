@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平台推广中心</title>
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:700,400|Montserrat:400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #181c2f 0%, #232b3b 100%);
+      min-height: 100vh;
+      color: #f5f6fa;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .bg-spot {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+    .spot1 {
+      width: 600px; height: 600px;
+      left: -200px; top: -180px;
+      background: radial-gradient(circle, #2b7cff 0%, transparent 80%);
+    }
+    .spot2 {
+      width: 400px; height: 400px;
+      right: -120px; bottom: -120px;
+      background: radial-gradient(circle, #a259ff 0%, transparent 80%);
+    }
+    .header {
+      text-align: center;
+      padding: 90px 20px 30px 20px;
+      background: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 {
+      font-size: 2.2em;
+      margin: 0 0 10px 0;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: #3ecbff;
+      text-shadow: 0 2px 12px #2b7cff33;
+    }
+    .header p {
+      font-size: 1.08em;
+      opacity: 0.96;
+      color: #e0e0e0;
+      text-shadow: none;
+    }
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 10px 60px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .card {
+      background: linear-gradient(135deg, #232b3b 80%, #263a5a 100%);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px #000a;
+      padding: 28px 20px 22px 20px;
+      width: 340px;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s, border 0.18s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: none;
+      backdrop-filter: none;
+    }
+    .card::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #3ecbff 0%, #a259ff 100%);
+      border-radius: 16px 16px 0 0;
+      z-index: 2;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 32px #000c;
+      background: linear-gradient(135deg, #263a5a 80%, #232b3b 100%);
+    }
+    .card .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #233a5a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.5em;
+      color: #3ecbff;
+      font-weight: bold;
+      box-shadow: none;
+      border: none;
+      z-index: 1;
+      position: relative;
+    }
+    .card h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.18em;
+      font-weight: 700;
+      color: #f5f6fa;
+      text-shadow: none;
+      z-index: 1;
+      position: relative;
+    }
+    .card p {
+      font-size: 1em;
+      opacity: 0.98;
+      margin-bottom: 18px;
+      color: #e0e0e0;
+      z-index: 1;
+      position: relative;
+      text-shadow: none;
+    }
+    .card a {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #3ecbff 0%, #5b7cff 100%);
+      color: #fff;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-size: 1em;
+      box-shadow: none;
+      border: none;
+      transition: background 0.18s, color 0.18s;
+      position: relative;
+      z-index: 1;
+      filter: none;
+    }
+    .card a:hover {
+      background: linear-gradient(90deg, #2b7cff 0%, #3ecbff 100%);
+      color: #fff;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      z-index: 10001;
+      background: linear-gradient(90deg, #3ecbff 0%, #a259ff 100%);
+      color: #fff;
+      border: none;
+      border-radius: 16px;
+      padding: 7px 18px;
+      font-size: 1em;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #3ecbff44;
+      transition: background 0.18s, box-shadow 0.18s;
+      appearance: none;
+      outline: none;
+      min-width: 90px;
+      text-align: center;
+      text-align-last: center;
+    }
+    .lang-switch:focus {
+      box-shadow: 0 0 0 2px #3ecbff88;
+    }
+    .lang-switch option {
+      color: #232b3b;
+      background: #fff;
+      font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+      font-size: 1em;
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      body {
+        background-attachment: fixed;
+      }
+      .platforms {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        padding: 0 2vw 18px 2vw;
+        width: 100vw;
+        margin: 0;
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
+      .card {
+        width: 92vw;
+        max-width: 420px;
+        min-width: 0;
+        padding: 14px 4vw 12px 4vw;
+        box-sizing: border-box;
+        border-radius: 12px;
+        margin: 0 auto;
+        box-shadow: 0 1px 8px #00eaff22;
+      }
+      .header {
+        padding: 48px 4vw 10px 4vw;
+      }
+      .header h1 {
+        font-size: 1.5em;
+      }
+      .header p {
+        font-size: 1em;
+      }
+      .card h2 {
+        font-size: 1.05em;
+      }
+      .card p {
+        font-size: 0.95em;
+      }
+      .card .logo {
+        width: 32px;
+        height: 32px;
+        font-size: 1em;
+        margin-bottom: 6px;
+        border-radius: 8px;
+      }
+      .card a {
+        font-size: 0.95em;
+        padding: 7px 12px;
+        border-radius: 5px;
+      }
+      .lang-switch {
+        top: 10px;
+        right: 8px;
+        padding: 5px 12px;
+        font-size: 0.95em;
+        border-radius: 8px;
+        min-width: 70px;
+      }
+    }
+    .carousel {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 800/364;
+      margin: 0 auto 32px auto;
+      position: relative;
+      z-index: 2;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px #000a;
+      background: #222b3b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #222b3b;
+      border-radius: 0;
+      position: absolute;
+      left: 0; top: 0;
+      margin: 0 auto;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+      transition: none;
+      display: block;
+    }
+    .carousel-img.active {
+      z-index: 2;
+      animation: slideInFromRight 0.6s cubic-bezier(.6,.2,.3,1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .carousel-img.no-anim.active {
+      animation: none !important;
+    }
+    .carousel-img.slide-out {
+      z-index: 3;
+      animation: slideOutToLeft 0.6s cubic-bezier(.6,.2,.3,1);
+      opacity: 1;
+    }
+    @keyframes slideInFromRight {
+      from { transform: translateX(100%); opacity: 1; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutToLeft {
+      from { transform: translateX(0); opacity: 1; }
+      to   { transform: translateX(-100%); opacity: 1; }
+    }
+    @media (max-width: 900px) {
+      .carousel {
+        max-width: 98vw;
+        aspect-ratio: 2/1;
+        border-radius: 10px;
+      }
+      .carousel-img {
+        max-height: none;
+      }
+      .carousel-inner {
+        min-height: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <select class="lang-switch" id="langSwitch">
+    <option value="zh">中文</option>
+    <option value="en">English</option>
+  </select>
+  <div class="bg-spot spot1"></div>
+  <div class="bg-spot spot2"></div>
+  <div class="header">
+    <h1 data-i18n="header_title">Coco业务</h1>
+    <p data-i18n="header_desc">发现更多优质平台，点击了解详细资料！</p>
+  </div>
+  <!-- 轮播图开始 -->
+  <div class="carousel">
+    <div class="carousel-inner">
+      <img src="https://bztan0414.github.io/Coco/mys1.jpg" class="carousel-img active" alt="banner1">
+      <img src="https://bztan0414.github.io/Coco/mys2.jpg" class="carousel-img" alt="banner2">
+      <img src="https://bztan0414.github.io/Coco/mys3.jpg" class="carousel-img" alt="banner3">
+      <img src="https://bztan0414.github.io/Coco/mys4.jpg" class="carousel-img" alt="banner4">
+      <img src="https://bztan0414.github.io/Coco/mys5.png" class="carousel-img" alt="banner5">
+    </div>
+  </div>
+  <!-- 轮播图结束 -->
+  <div class="platforms">
+    <!-- 平台1：MYSGAME -->
+    <div class="card">
+      <div class="logo">🎮</div>
+      <h2 data-i18n="mys_title">MYSGAME</h2>
+      <p data-i18n="mys_desc">马来西亚顶级在线游戏平台，安全可靠，支持多种游戏和快速支付。</p>
+      <a href="mys.html" data-i18n="more_btn">了解更多</a>
+    </div>
+    <!-- 平台2：示例A -->
+    <div class="card">
+      <div class="logo">🛒</div>
+      <h2 data-i18n="a_title">示例平台A</h2>
+      <p data-i18n="a_desc">优质电商平台，丰富商品，极速发货，售后无忧。</p>
+      <a href="https://example.com/a" target="_blank" data-i18n="more_btn">了解更多</a>
+    </div>
+    <!-- 平台3：示例B -->
+    <div class="card">
+      <div class="logo">💡</div>
+      <h2 data-i18n="b_title">示例平台B</h2>
+      <p data-i18n="b_desc">创新科技服务，助力企业数字化转型，专业团队保障。</p>
+      <a href="https://example.com/b" target="_blank" data-i18n="more_btn">了解更多</a>
+    </div>
+  </div>
+  <script>
+    const i18n = {
+      zh: {
+        header_title: 'Coco业务',
+        header_desc: '发现更多优质平台，点击了解详细资料！',
+        mys_title: 'MYSGAME',
+        mys_desc: '马来西亚顶级在线游戏平台，安全可靠，支持多种游戏和快速支付。',
+        a_title: '示例平台A',
+        a_desc: '优质电商平台，丰富商品，极速发货，售后无忧。',
+        b_title: '示例平台B',
+        b_desc: '创新科技服务，助力企业数字化转型，专业团队保障。',
+        more_btn: '了解更多',
+      },
+      en: {
+        header_title: 'Coco Business',
+        header_desc: 'Discover more quality platforms, click to learn more!',
+        mys_title: 'MYSGAME',
+        mys_desc: "Malaysia's top online gaming platform, safe and reliable, supporting various games and fast payments.",
+        a_title: 'Platform A',
+        a_desc: 'Premium e-commerce platform, rich products, fast delivery, worry-free after-sales.',
+        b_title: 'Platform B',
+        b_desc: 'Innovative tech services, empowering digital transformation, professional team support.',
+        more_btn: 'Learn More',
+      }
+    };
+    function setLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) el.textContent = i18n[lang][key];
+      });
+      document.getElementById('langSwitch').value = lang;
+      localStorage.setItem('lang', lang);
+    }
+    document.getElementById('langSwitch').onchange = function() {
+      setLang(this.value);
+    };
+    // 初始化
+    setLang(localStorage.getItem('lang') || 'zh');
+    // 轮播图JS
+    (function() {
+      const imgs = document.querySelectorAll('.carousel-img');
+      let idx = 0;
+      let timer = null;
+      function show(nextIdx) {
+        if (nextIdx === idx) return;
+        const cur = imgs[idx];
+        const next = imgs[nextIdx];
+        // 当前图片滑出
+        cur.classList.remove('active');
+        cur.classList.add('slide-out');
+        next.classList.add('active');
+        next.classList.remove('no-anim');
+        next.style.opacity = '1';
+        // 动画结束后彻底隐藏上一张
+        cur.addEventListener('animationend', function handler() {
+          cur.classList.remove('slide-out');
+          cur.style.opacity = '0';
+          next.style.opacity = '1';
+          imgs.forEach((img, i) => {
+            if (i !== nextIdx) {
+              img.classList.remove('active');
+              img.style.opacity = '0';
+            }
+          });
+          cur.removeEventListener('animationend', handler);
+        });
+        idx = nextIdx;
+      }
+      function next() {
+        show((idx + 1) % imgs.length);
+      }
+      imgs.forEach((img, i) => {
+        img.classList.remove('active', 'slide-out', 'no-anim');
+        img.style.opacity = (i === 0) ? '1' : '0';
+      });
+      imgs[0].classList.add('active', 'no-anim');
+      timer = setInterval(next, 4000);
+    })();
+  </script>
+</body>
+</html>
